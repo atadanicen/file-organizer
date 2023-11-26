@@ -101,6 +101,7 @@ downloads_path = os.path.join(who_am_i, "Downloads")
 today = date.today()
 today_folder_name = today.strftime("%Y-%m-%d")
 
+# which folders to create
 folders = [
     "Images",
     "Sounds",
@@ -114,7 +115,7 @@ folders = [
     "Torrents",
     "Folders",
 ]
-
+# define the file extensions
 images = [".jpg", ".png", ".jpeg", ".gif", ".webp", ".svg", ".heic"]
 sounds = [".mp3"]
 videos = [".mp4", ".mov"]
@@ -125,15 +126,16 @@ installation = [".dmg", ".exe", ".pkg"]
 zips = [".zip", ".rar", ".tar"]
 torrents = [".torrent"]
 
-
+# create folders
 for folder in folders:
     create_folder(downloads_path + "/" + folder)
 
 # return all files as a list
 for file in os.listdir(downloads_path):
-    # check the files which are end with specific extension
     file_to_move = os.path.join(downloads_path, file)
     if today - get_cretion_date(file_to_move) > timedelta(days=30):
+        # check the files which are end with specific extension
+        # and move them to the corresponding folder
         if os.path.isfile(file_to_move):
             print(" :File moved successfully!: ", file)
             if check_file_extension(file, images):
