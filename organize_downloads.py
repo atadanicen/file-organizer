@@ -2,7 +2,7 @@ import os.path
 from datetime import date, datetime, timedelta
 
 
-def get_cretion_date(file: str) -> date:
+def get_creation_date(file: str) -> date:
     """
     Get the creation date of a file.
 
@@ -123,7 +123,7 @@ for folder_name in extensions_mapping.keys() | {"Others", "Folders"}:
 
 for file in os.listdir(downloads_path):
     file_to_move = os.path.join(downloads_path, file)
-    if today - get_cretion_date(file_to_move) > timedelta(days=30):
+    if today - get_creation_date(file_to_move) > timedelta(days=30):
         if os.path.isfile(file_to_move):
             file_extension = get_file_extension(file)
             folder_name = next(
